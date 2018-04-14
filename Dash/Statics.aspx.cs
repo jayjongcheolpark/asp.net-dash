@@ -1,7 +1,9 @@
-﻿using FusionCharts.Charts;
+﻿using Dash.EmployeeDataSetTableAdapters;
+using FusionCharts.Charts;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -13,27 +15,77 @@ namespace Dash
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-      var json = JObject.Parse("{\"chart\":{\"caption\":\"Departments of employees\",\"subcaption\":\"\",\"startingangle\":\"120\",\"showlabels\":\"0\",\"showlegend\":\"1\",\"enablemultislicing\":\"0\",\"slicingdistance\":\"15\",\"showpercentvalues\":\"1\",\"showpercentintooltip\":\"0\",\"plottooltext\":\"Department : $label\",\"Total\":null,\"visit\":\"$datavalue\\\",\",\"theme\":\"fint\"} }");
+      string username = (string)(Session["auth"]);
+      if (string.IsNullOrEmpty(username))
+      {
+        Response.Redirect("Login.aspx");
+      }
 
-      var json1 = JObject.FromObject(new { label = "Development", value = "3" });
-      var json2 = JObject.FromObject(new { label = "Design", value = "2" });
-      var json3 = JObject.FromObject(new { label = "Devops", value = "1" });
+      DrawDepartmentWithPieChart();
+    }
+    private bool ColumnEqual(object A, object B)
+    {
+      // Compares two values to see if they are equal. Also compares DBNULL.Value.           
+      if (A == DBNull.Value && B == DBNull.Value) //  both are DBNull.Value
+        return true;
+      if (A == DBNull.Value || B == DBNull.Value) //  only one is BNull.Value
+        return false;
+      return (A.Equals(B));  // value type standard comparison
+    }
+    public DataTable SelectDistinct(DataTable SourceTable, string FieldName)
+    {
+      // Create a Datatable â€“ datatype same as FieldName
+      DataTable dt = new DataTable(SourceTable.TableName);
+      dt.Columns.Add(FieldName, SourceTable.Columns[FieldName].DataType);
+      // Loop each row & compare each value with one another
+      // Add it to datatable if the values are mismatch
+      object LastValue = null;
+      foreach (DataRow dr in SourceTable.Select("", FieldName))
+      {
+        if (LastValue == null || !(ColumnEqual(LastValue, dr[FieldName])))
+        {
+          LastValue = dr[FieldName];
+          dt.Rows.Add(new object[] { LastValue });
+        }
+      }
+      return dt;
+    }
 
-      var jarray = new JArray();
-      jarray.Add(json1);
-      jarray.Add(json2);
-      jarray.Add(json3);
+    public void DrawDepartmentWithPieChart()
+    {
+      JsonBuilder jb = new JsonBuilder("pie");
 
-      json.Add("data", jarray);
+      EmployeeDataSet empdataset = new EmployeeDataSet();
+      EmployeeTableAdapter empTableAdapter = new EmployeeTableAdapter();
+      empTableAdapter.Fill(empdataset.Employee);
 
-      Chart chart = new Chart("pie3D", "simplechart", "600", "400", "jsonurl", "data.json");
+      DataTable distinctDepart = SelectDistinct(empdataset.Employee, "Department");
+      var map = new Dictionary<string, int>();
+
+      foreach (DataRow dr in distinctDepart.Rows)
+      {
+        System.Diagnostics.Debug.WriteLine(dr["Department"].ToString());
+        map.Add(dr["Department"].ToString(), 0);
+      }
+
+      foreach (DataRow dr in empdataset.Employee.Rows)
+      {
+        string dptmnt = dr["Department"].ToString();
+        map[dptmnt] = map[dptmnt] + 1;
+      }
+
+      foreach (var pair in map)
+      {
+        jb.AddData(pair.Key, pair.Value.ToString());
+      }
+
       Chart pieChart = new Chart();
 
       // Setting chart id
       pieChart.SetChartParameter(Chart.ChartParameter.chartId, "myChart");
 
       // Setting chart type to Column 3D chart
-      pieChart.SetChartParameter(Chart.ChartParameter.chartType, "pie3D");
+      pieChart.SetChartParameter(Chart.ChartParameter.chartType, "pie2D");
 
       // Setting chart width to 600px
       pieChart.SetChartParameter(Chart.ChartParameter.chartWidth, "600");
@@ -42,7 +94,7 @@ namespace Dash
       pieChart.SetChartParameter(Chart.ChartParameter.chartHeight, "450");
 
       // Setting chart data as JSON String (Uncomment below line  
-      pieChart.SetData(json.ToString(), Chart.DataFormat.json);
+      pieChart.SetData(jb.GetJson().ToString(), Chart.DataFormat.json);
       _literChart.Text = pieChart.Render();
 
     }

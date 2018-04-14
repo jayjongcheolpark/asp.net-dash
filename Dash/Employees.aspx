@@ -11,22 +11,22 @@
         <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
       </td>
       <td>
-        <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstName") %>' />
+        <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Bind("FirstName") %>' />
       </td>
       <td>
-        <asp:Label ID="LastNameLabel" runat="server" Text='<%# Eval("LastName") %>' />
+        <asp:Label ID="LastNameLabel" runat="server" Text='<%# Bind("LastName") %>' />
       </td>
       <td>
-        <asp:Label ID="PositionLabel" runat="server" Text='<%# Eval("Position") %>' />
+        <asp:Label ID="PositionLabel" runat="server" Text='<%# Bind("Position") %>' />
       </td>
       <td>
-        <asp:Label ID="HiredDateLabel" runat="server" Text='<%# Eval("HiredDate","{0:yyyy-MM-dd}") %>' />
+        <asp:Label ID="HiredDateLabel" runat="server" Text='<%# Bind("HiredDate","{0:yyyy-MM-dd}") %>' />
       </td>
       <td>
-        <asp:Label ID="SalaryLabel" runat="server" Text='<%# Eval("Salary") %>' />
+        <asp:Label ID="SalaryLabel" runat="server" Text='<%# Bind("Salary") %>' />
       </td>
       <td>
-        <asp:Label ID="DepartmentLabel" runat="server" Text='<%# Eval("Department") %>' />
+        <asp:Label ID="DepartmentLabel" runat="server" Text='<%# Bind("Department") %>' />
       </td>
       <td>
         <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />
@@ -103,22 +103,22 @@
         <asp:Button ID="EditButton" runat="server" CommandName="Edit" Text="Edit" />
       </td>
       <td>
-        <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Eval("FirstName") %>' />
+        <asp:Label ID="FirstNameLabel" runat="server" Text='<%# Bind("FirstName") %>' />
       </td>
       <td>
-        <asp:Label ID="LastNameLabel" runat="server" Text='<%# Eval("LastName") %>' />
+        <asp:Label ID="LastNameLabel" runat="server" Text='<%# Bind("LastName") %>' />
       </td>
       <td>
-        <asp:Label ID="PositionLabel" runat="server" Text='<%# Eval("Position") %>' />
+        <asp:Label ID="PositionLabel" runat="server" Text='<%# Bind("Position") %>' />
       </td>
       <td>
-        <asp:Label ID="HiredDateLabel" runat="server" Text='<%# Eval("HiredDate","{0:yyyy-MM-dd}") %>' />
+        <asp:Label ID="HiredDateLabel" runat="server" Text='<%# Bind("HiredDate","{0:yyyy-MM-dd}") %>' />
       </td>
       <td>
-        <asp:Label ID="SalaryLabel" runat="server" Text='<%# Eval("Salary") %>' />
+        <asp:Label ID="SalaryLabel" runat="server" Text='<%# Bind("Salary") %>' />
       </td>
       <td>
-        <asp:Label ID="DepartmentLabel" runat="server" Text='<%# Eval("Department") %>' />
+        <asp:Label ID="DepartmentLabel" runat="server" Text='<%# Bind("Department") %>' />
       </td>
       <td>
         <asp:Label ID="IdLabel" runat="server" Text='<%# Eval("Id") %>' />

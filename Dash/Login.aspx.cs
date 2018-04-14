@@ -26,10 +26,6 @@ namespace Dash
       string username = admindataset.Admin[0].Username;
       string password = admindataset.Admin[0].Password;
 
-      System.Diagnostics.Debug.WriteLine(username);
-      System.Diagnostics.Debug.WriteLine(_txtAdminID);
-      System.Diagnostics.Debug.WriteLine(password);
-      System.Diagnostics.Debug.WriteLine(_txtPassword);
       if (username.Equals(_txtAdminID.Text) && password.Equals(_txtPassword.Text))
       {
         Session["auth"] = username;
