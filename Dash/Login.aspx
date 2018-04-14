@@ -16,6 +16,7 @@
       .lbl {
         display: inline-block;
         width: 90px;
+        font-weight: bold;
       }
 
       .row {
@@ -31,6 +32,17 @@
         display: flex;
         justify-content: center;
         height: 340px;
+      }
+
+      #form1 {
+        color: #0792d4;
+      }
+      #form1 input {
+        border: 1px solid #0792d4;
+        color: #0792d4;
+      }
+      #form1 input[type=submit] {
+        background-color: white;
       }
     </style>
 </head>
