@@ -65,6 +65,11 @@
         background-color: white;
        }
 
+       #employees-page {
+         padding-top: 2em;
+         padding-left: 2em;
+       }
+
     </style>
 </head>
 <body>
@@ -76,6 +81,9 @@
             </li>
             <li>
               <a href="Statics.aspx">Statics</a>
+            </li>
+            <li>
+              <a href="Department.aspx">Department</a>
             </li>
           </ul>
             <div>

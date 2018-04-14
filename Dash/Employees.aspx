@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+  <div id="employees-page">
   <asp:ListView ID="ListView1" runat="server" DataKeyNames="Id" DataSourceID="DashDBDataSource" InsertItemPosition="LastItem">
   <AlternatingItemTemplate>
     <tr style="">
@@ -220,4 +221,5 @@
   </UpdateParameters>
 </asp:SqlDataSource>
 &nbsp;
+</div>
 </asp:Content>
