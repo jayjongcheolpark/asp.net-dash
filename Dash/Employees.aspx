@@ -20,7 +20,7 @@
         <asp:Label ID="PositionLabel" runat="server" Text='<%# Eval("Position") %>' />
       </td>
       <td>
-        <asp:Label ID="HiredDateLabel" runat="server" Text='<%# Eval("HiredDate") %>' />
+        <asp:Label ID="HiredDateLabel" runat="server" Text='<%# Eval("HiredDate","{0:yyyy-MM-dd}") %>' />
       </td>
       <td>
         <asp:Label ID="SalaryLabel" runat="server" Text='<%# Eval("Salary") %>' />
@@ -112,7 +112,7 @@
         <asp:Label ID="PositionLabel" runat="server" Text='<%# Eval("Position") %>' />
       </td>
       <td>
-        <asp:Label ID="HiredDateLabel" runat="server" Text='<%# Eval("HiredDate") %>' />
+        <asp:Label ID="HiredDateLabel" runat="server" Text='<%# Eval("HiredDate","{0:yyyy-MM-dd}") %>' />
       </td>
       <td>
         <asp:Label ID="SalaryLabel" runat="server" Text='<%# Eval("Salary") %>' />
