@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dash.master.cs" Inherits="Dash.Dash" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <asp:ContentPlaceHolder ID="HeaderContent" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+      .grid-a {
+        display: grid;
+        height: 100vh;
+        grid-template-columns: 250px 1fr;
+      }
+      #side-nav {
+        background-color: #0792d4;
+        padding: 1.5em;
+      }
+
+      ul#side-nav {
+        margin: 0;
+        list-style-type: none;
+      }
+      #side-nav li {
+        margin-bottom: 1.5em;
+        text-align: right;
+      }
+      #side-nav a {
+        color: white;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-decoration: none;
+        font-family: 'Open Sans', sans-serif;
+      }
+
+      table#MainContent_ListView1_itemPlaceholderContainer {
+        font-family: 'Open Sans', sans-serif;
+        color: #0792d4;
+        border-collapse: collapse;
+      }
+
+      #MainContent_ListView1_itemPlaceholderContainer th {
+        text-align: left;
+        border-bottom: 2px solid #0792d4;
+        padding-top: 0.2em;
+        padding-bottom: 0.8em;
+      }
+
+       #MainContent_ListView1_itemPlaceholderContainer td {
+        border-bottom: 1px solid #0792d4;
+        padding-top: 0.8em;
+        padding-bottom: 0.4em;
+        padding-right: 1em;
+      }
+       #MainContent_ListView1_itemPlaceholderContainer input[type=submit] {
+        padding: 0.2em;
+        color: #0782d4;
+        border: 1px solid #0782d4;
+        width: 80px;
+        background-color: white;
+       }
+
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="grid-a">
+          <ul id="side-nav">
+            <li>
+              <a href="Employees.aspx">Employees</a>
+            </li>
+            <li>
+              <a href="Statics.aspx">Statics</a>
+            </li>
+          </ul>
+            <div>
+              <asp:ContentPlaceHolder ID="MainContent" runat="server">
+              </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
