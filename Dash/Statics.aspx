@@ -2,5 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeaderContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-   Statics
+  <div id="statics-page">
+    <asp:Literal ID="_literChart" runat="server"></asp:Literal>
+  </div>  
+&nbsp;
 </asp:Content>

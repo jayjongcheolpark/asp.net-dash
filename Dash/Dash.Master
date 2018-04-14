@@ -6,6 +6,8 @@
 <head runat="server">
     <title></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src="Scripts/fusioncharts.js"></script>
+    <script src="Scripts/fusioncharts.charts.js"></script>
     <asp:ContentPlaceHolder ID="HeaderContent" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
@@ -66,6 +68,10 @@
        }
 
        #employees-page {
+         padding-top: 2em;
+         padding-left: 2em;
+       }
+       #statics-page {
          padding-top: 2em;
          padding-left: 2em;
        }
