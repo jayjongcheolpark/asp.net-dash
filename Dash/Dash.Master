@@ -75,20 +75,23 @@
         padding-top: 2em;
         padding-left: 2em;
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-gap: 2em 1em;
        }
        #department-page {
         padding-top: 2em;
         padding-left: 2em;
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         grid-gap: 2em 1em;
        }
 
        #sales-page {
         padding-top: 2em;
         padding-left: 2em;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2em 1em;
        }
 
     </style>
