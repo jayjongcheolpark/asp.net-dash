@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace Dash
 {
-  public partial class Department : System.Web.UI.Page
+  public partial class Salary : System.Web.UI.Page
   {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,13 +20,13 @@ namespace Dash
         Response.Redirect("Login.aspx");
       }
 
-      DrawDepartmentWithPieChart();
-      DrawNumOfEmployeeByDepartmentWithBarChart();
+      DrawSalaryDistributionWithBarChart();
+      DrawTotalSalaryByDepartmentWithBarChart();
     }
 
-    public void DrawNumOfEmployeeByDepartmentWithBarChart()
+    public void DrawTotalSalaryByDepartmentWithBarChart()
     {
-      JsonBuilder jb = new JsonBuilder("barYellow");
+      JsonBuilder jb = new JsonBuilder("barRed");
 
       EmployeeDataSet empdataset = new EmployeeDataSet();
       EmployeeTableAdapter empTableAdapter = new EmployeeTableAdapter();
@@ -41,21 +41,26 @@ namespace Dash
         map.Add(dr["Department"].ToString(), 0);
       }
 
+
       foreach (DataRow dr in empdataset.Employee.Rows)
       {
-        string dptmnt = dr["Department"].ToString();
-        map[dptmnt] = map[dptmnt] + 1;
+        int salaryInt = int.Parse(dr["Salary"].ToString());
+        string dptmt = dr["Department"].ToString();
+        map[dptmt] = map[dptmt] + salaryInt;
       }
 
-      foreach (var pair in map)
+      var ordered = map.OrderByDescending(x => x.Value);
+
+      foreach (var pair in ordered)
       {
+
         jb.AddData(pair.Key, pair.Value.ToString());
       }
 
       Chart barChart = new Chart();
 
       // Setting chart id
-      barChart.SetChartParameter(Chart.ChartParameter.chartId, "dptmtBar");
+      barChart.SetChartParameter(Chart.ChartParameter.chartId, "totalSalaryBar");
 
       // Setting chart type to Column 3D chart
       barChart.SetChartParameter(Chart.ChartParameter.chartType, "bar2D");
@@ -68,55 +73,58 @@ namespace Dash
 
       // Setting chart data as JSON String (Uncomment below line  
       barChart.SetData(jb.GetJson().ToString(), Chart.DataFormat.json);
-      _literDepartmentChart2.Text = barChart.Render();
+      _literSalaryChart2.Text = barChart.Render();
       
     }
-
-    public void DrawDepartmentWithPieChart()
+    public void DrawSalaryDistributionWithBarChart()
     {
-      JsonBuilder jb = new JsonBuilder("pie");
+      JsonBuilder jb = new JsonBuilder("bar");
 
       EmployeeDataSet empdataset = new EmployeeDataSet();
       EmployeeTableAdapter empTableAdapter = new EmployeeTableAdapter();
       empTableAdapter.Fill(empdataset.Employee);
 
-      DataTable distinctDepart = DatasetHelper.SelectDistinct(empdataset.Employee, "Department");
       var map = new Dictionary<string, int>();
-
-      foreach (DataRow dr in distinctDepart.Rows)
-      {
-        System.Diagnostics.Debug.WriteLine(dr["Department"].ToString());
-        map.Add(dr["Department"].ToString(), 0);
-      }
-
       foreach (DataRow dr in empdataset.Employee.Rows)
       {
-        string dptmnt = dr["Department"].ToString();
-        map[dptmnt] = map[dptmnt] + 1;
+        int salaryInt = int.Parse(dr["Salary"].ToString());
+        salaryInt /= 10000;
+        string salaryRange = salaryInt.ToString();
+        if (map.ContainsKey(salaryRange))
+        {
+          map[salaryRange] = map[salaryRange] + 1;
+        }
+        else
+        {
+          map.Add(salaryRange, 1);
+        }
       }
 
-      foreach (var pair in map)
+      var ordered = map.OrderByDescending(x => int.Parse(x.Key));
+
+      foreach (var pair in ordered)
       {
-        jb.AddData(pair.Key, pair.Value.ToString());
+
+        jb.AddData((int.Parse(pair.Key) * 10000).ToString(), pair.Value.ToString());
       }
 
-      Chart pieChart = new Chart();
+      Chart barChart = new Chart();
 
       // Setting chart id
-      pieChart.SetChartParameter(Chart.ChartParameter.chartId, "dptmtPie");
+      barChart.SetChartParameter(Chart.ChartParameter.chartId, "myChart2");
 
       // Setting chart type to Column 3D chart
-      pieChart.SetChartParameter(Chart.ChartParameter.chartType, "pie2D");
+      barChart.SetChartParameter(Chart.ChartParameter.chartType, "bar2D");
 
       // Setting chart width to 600px
-      pieChart.SetChartParameter(Chart.ChartParameter.chartWidth, "600");
+      barChart.SetChartParameter(Chart.ChartParameter.chartWidth, "600");
 
       // Setting chart height to 350px
-      pieChart.SetChartParameter(Chart.ChartParameter.chartHeight, "450");
+      barChart.SetChartParameter(Chart.ChartParameter.chartHeight, "450");
 
       // Setting chart data as JSON String (Uncomment below line  
-      pieChart.SetData(jb.GetJson().ToString(), Chart.DataFormat.json);
-      _literDepartmentChart.Text = pieChart.Render();
+      barChart.SetData(jb.GetJson().ToString(), Chart.DataFormat.json);
+      _literSalaryChart.Text = barChart.Render();
     }
   }
 }

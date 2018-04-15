@@ -10,24 +10,15 @@
 namespace Dash {
     
     
-    public partial class Department {
+    public partial class Sales {
         
         /// <summary>
-        /// _literDepartmentChart control.
+        /// _literSalesChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal _literDepartmentChart;
-        
-        /// <summary>
-        /// _literDepartmentChart2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal _literDepartmentChart2;
+        protected global::System.Web.UI.WebControls.Literal _literSalesChart;
     }
 }

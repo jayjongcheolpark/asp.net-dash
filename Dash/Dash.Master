@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dash.master.cs" Inherits="Dash.Dash" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Dash.master.cs" Inherits="Dash.CDash" %>
 
 <!DOCTYPE html>
 
@@ -68,12 +68,27 @@
        }
 
        #employees-page {
-         padding-top: 2em;
-         padding-left: 2em;
+        padding-top: 2em;
+        padding-left: 2em;
        }
-       #statics-page {
-         padding-top: 2em;
-         padding-left: 2em;
+       #salary-page {
+        padding-top: 2em;
+        padding-left: 2em;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 2em 1em;
+       }
+       #department-page {
+        padding-top: 2em;
+        padding-left: 2em;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        grid-gap: 2em 1em;
+       }
+
+       #sales-page {
+        padding-top: 2em;
+        padding-left: 2em;
        }
 
     </style>
@@ -86,10 +101,13 @@
               <a href="Employees.aspx">Employees</a>
             </li>
             <li>
-              <a href="Statics.aspx">Statics</a>
+              <a href="Salary.aspx">Salary</a>
             </li>
             <li>
               <a href="Department.aspx">Department</a>
+            </li>
+            <li>
+              <a href="Sales.aspx">Sales</a>
             </li>
           </ul>
             <div>

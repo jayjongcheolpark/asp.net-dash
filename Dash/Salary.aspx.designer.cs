@@ -10,15 +10,24 @@
 namespace Dash {
     
     
-    public partial class Statics {
+    public partial class Salary {
         
         /// <summary>
-        /// _literChart control.
+        /// _literSalaryChart control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal _literChart;
+        protected global::System.Web.UI.WebControls.Literal _literSalaryChart;
+        
+        /// <summary>
+        /// _literSalaryChart2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal _literSalaryChart2;
     }
 }

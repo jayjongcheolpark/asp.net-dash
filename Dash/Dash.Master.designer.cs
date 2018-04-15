@@ -10,7 +10,7 @@
 namespace Dash {
     
     
-    public partial class Dash {
+    public partial class CDash {
         
         /// <summary>
         /// HeaderContent control.
